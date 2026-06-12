@@ -1,26 +1,66 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: #100f0d;
+  --color-foreground: #f4ead8;
+  --color-surface: #191613;
+  --color-primary: #c9a45c;
+  --color-primary-hover: #e0bc73;
+  --color-primary-rgb: 201, 164, 92;
+  --color-muted: #a99d8b;
+  --color-border: #3a2f22;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+body[data-theme="ancient-gold"] {
+  --color-background: #100f0d;
+  --color-foreground: #f4ead8;
+  --color-surface: #191613;
+  --color-primary: #c9a45c;
+  --color-primary-hover: #e0bc73;
+  --color-primary-rgb: 201, 164, 92;
+  --color-muted: #a99d8b;
+  --color-border: #3a2f22;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body[data-theme="royal-violet"] {
+  --color-background: #0d0b14;
+  --color-foreground: #f2eaff;
+  --color-surface: #171123;
+  --color-primary: #a855f7;
+  --color-primary-hover: #c084fc;
+  --color-primary-rgb: 168, 85, 247;
+  --color-muted: #b8abc9;
+  --color-border: #33243f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(var(--color-primary-rgb), 0.12),
+      transparent 32rem
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(var(--color-primary-rgb), 0.08),
+      transparent 28rem
+    ),
+    var(--color-background);
+  color: var(--color-foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-background);
 }

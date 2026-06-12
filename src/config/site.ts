@@ -3,7 +3,7 @@ import type { Locale } from "@/i18n/locales";
 
 export const siteConfig = {
   name: "Ink Ornament",
-  url: "https://ink-ornament.example.com",
+  url: "https://ink-ornament.vercel.app",
   defaultLocale: "es" satisfies Locale,
   locales: ["es", "en"] as const,
 

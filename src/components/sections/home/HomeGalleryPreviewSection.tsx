@@ -1,4 +1,5 @@
 // src/components/sections/home/HomeGalleryPreviewSection.tsx
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/Badge";
@@ -6,20 +7,21 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { cn } from "@/lib/utils";
+import { siteConfig } from "@/config/site";
 import type { Locale } from "@/i18n/locales";
+import { cn } from "@/lib/utils";
 
 type HomeGalleryPreviewSectionProps = {
   locale: Locale;
   t: (key: string) => string;
 };
 
-const previewItems = [0, 1, 2] as const;
-
 export function HomeGalleryPreviewSection({
   locale,
   t,
 }: HomeGalleryPreviewSectionProps) {
+  const [featuredItem, ...sideItems] = siteConfig.gallery.homePreview;
+
   return (
     <Section className="border-y border-[var(--color-border)]/70">
       <Container>
@@ -46,19 +48,27 @@ export function HomeGalleryPreviewSection({
 
         <div className="mt-14 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
           <GalleryPreviewCard
-            index={0}
+            index={featuredItem.index}
+            src={featuredItem.src}
+            sizes={featuredItem.sizes}
+            priority={featuredItem.priority}
             t={t}
-            className="lg:min-h-[34rem]"
-            visualClassName="aspect-[4/5] lg:aspect-auto lg:h-full"
+            className={featuredItem.className}
+            visualClassName={featuredItem.visualClassName}
           />
 
           <div className="grid gap-5">
-            {previewItems.slice(1).map((itemIndex) => (
+            {sideItems.map((item) => (
               <GalleryPreviewCard
-                key={itemIndex}
-                index={itemIndex}
+                key={item.index}
+                index={item.index}
+                src={item.src}
+                sizes={item.sizes}
+                priority={item.priority}
                 t={t}
                 compact
+                className={item.className}
+                visualClassName={item.visualClassName}
               />
             ))}
           </div>
@@ -69,20 +79,29 @@ export function HomeGalleryPreviewSection({
 }
 
 type GalleryPreviewCardProps = {
-  index: (typeof previewItems)[number];
+  index: number;
+  src: string;
+  sizes: string;
   t: (key: string) => string;
   compact?: boolean;
+  priority?: boolean;
   className?: string;
   visualClassName?: string;
 };
 
 function GalleryPreviewCard({
   index,
+  src,
+  sizes,
   t,
   compact = false,
+  priority = false,
   className,
   visualClassName,
 }: GalleryPreviewCardProps) {
+  const title = t(`home.gallery.items.${index}.title`);
+  const category = t(`home.gallery.items.${index}.category`);
+
   return (
     <Card className={cn("overflow-hidden p-0", className)}>
       <div
@@ -92,20 +111,29 @@ function GalleryPreviewCard({
           visualClassName,
         )}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--color-primary-rgb),0.18),transparent_18rem)]" />
+        <Image
+          src={src}
+          alt={`${title} - ${category}`}
+          fill
+          priority={priority}
+          sizes={sizes}
+          className="object-cover"
+        />
 
-        <div className="absolute left-6 top-6 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)]/80 px-4 py-2 text-xs uppercase tracking-[0.22em] text-[var(--color-primary)]">
-          {t(`home.gallery.items.${index}.category`)}
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/75 via-transparent to-transparent" />
+
+        <div className="absolute left-6 top-6 rounded-full border border-white/15 bg-black/40 px-4 py-2 text-xs uppercase tracking-[0.22em] text-white backdrop-blur">
+          {category}
         </div>
 
-        <p className="absolute bottom-6 right-6 text-7xl font-black tracking-[-0.08em] text-[var(--color-foreground)]/10">
+        <p className="absolute bottom-6 right-6 text-7xl font-black tracking-[-0.08em] text-white/15">
           0{index + 1}
         </p>
       </div>
 
       <div className="p-6">
         <h3 className="text-xl font-semibold text-[var(--color-foreground)]">
-          {t(`home.gallery.items.${index}.title`)}
+          {title}
         </h3>
       </div>
     </Card>

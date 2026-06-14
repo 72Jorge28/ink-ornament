@@ -1,3 +1,4 @@
+// src/components/sections/home/HeroSection.tsx
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
@@ -42,18 +43,14 @@ export function HeroSection({ locale, t }: HeroSectionProps) {
         fill
         priority
         sizes="100vw"
-        className="object-cover opacity-80"
+        className="object-cover opacity-90"
         aria-hidden="true"
       />
 
       <div className="absolute inset-0 bg-[var(--color-background)]/30" />
-
       <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-background)]/95 via-[var(--color-background)]/78 to-[var(--color-background)]/45" />
-
       <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-background)]/35 via-transparent to-[var(--color-background)]/80" />
-
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(var(--color-primary-rgb),0.2),transparent_34rem)]" />
-
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-primary)]/40 to-transparent" />
 
       <Container className="relative">
@@ -61,13 +58,9 @@ export function HeroSection({ locale, t }: HeroSectionProps) {
           <div>
             <Badge className="mb-8">{t("hero.badge")}</Badge>
 
-            <h1 className="max-w-5xl text-5xl font-semibold tracking-[-0.055em] text-[var(--color-foreground)] sm:text-6xl lg:text-7xl">
-              {t("hero.title")}
+            <h1 className="max-w-5xl text-5xl font-semibold uppercase leading-[0.95] tracking-[0.12em] text-[var(--color-foreground)] sm:text-6xl sm:tracking-[0.16em] lg:text-7xl">
+              Ink Ornament
             </h1>
-
-            <p className="mt-7 max-w-2xl text-base leading-8 text-[var(--color-muted)] sm:text-lg">
-              {t("hero.description")}
-            </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button href={`/${locale}/contact`}>
@@ -137,7 +130,7 @@ export function HeroSection({ locale, t }: HeroSectionProps) {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <div className="absolute -inset-6 rounded-[2.5rem] bg-[radial-gradient(circle_at_center,rgba(var(--color-primary-rgb),0.18),transparent_22rem)]" />
 
             <div className="relative overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-surface)]/65 p-4 shadow-2xl shadow-black/30 backdrop-blur">

@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { HeroSection } from "@/components/sections/home/HeroSection";
 import { HomeGalleryPreviewSection } from "@/components/sections/home/HomeGalleryPreviewSection";
-import { StylesSection } from "@/components/sections/home/StylesSection";
+// import { StylesSection } from "@/components/sections/home/StylesSection";
 import { createT } from "@/i18n/create-t";
 import { getMessages } from "@/i18n/get-messages";
 import { isValidLocale } from "@/i18n/locales";
@@ -50,7 +50,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <main>
         <HeroSection locale={locale} t={t} />
         <HomeGalleryPreviewSection locale={locale} t={t} />
-        <StylesSection locale={locale} t={t} />
+        {/* <StylesSection locale={locale} t={t} /> */}
       </main>
 
       <Footer locale={locale} t={t} />

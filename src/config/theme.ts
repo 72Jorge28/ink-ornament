@@ -1,9 +1,11 @@
+// src/config/theme.ts
 export const themeConfig = {
   activePreset: "royal-violet",
 
   presets: {
     ancientGold: "ancient-gold",
     royalViolet: "royal-violet",
+    emeraldLight: "emerald-light",
   },
 
   radius: {

@@ -1,4 +1,5 @@
 // src/components/sections/contact/ContactDetailsSection.tsx
+import { ArrowUpRight } from "lucide-react";
 import type { IconType } from "react-icons";
 import { MdEmail, MdLocationOn, MdPhone } from "react-icons/md";
 
@@ -16,23 +17,33 @@ type DetailItem = {
   key: "email" | "phone" | "location";
   icon: IconType;
   value: string;
+  href: string;
+  isExternal?: boolean;
 };
+
+function getPhoneHref(phone: string) {
+  return `tel:${phone.replace(/[^\d+]/g, "")}`;
+}
 
 const detailItems: DetailItem[] = [
   {
     key: "email",
     icon: MdEmail,
     value: siteConfig.contact.email,
+    href: `mailto:${siteConfig.contact.email}`,
   },
   {
     key: "phone",
     icon: MdPhone,
     value: siteConfig.contact.phone,
+    href: getPhoneHref(siteConfig.contact.phone),
   },
   {
     key: "location",
     icon: MdLocationOn,
     value: siteConfig.contact.address,
+    href: siteConfig.contact.mapUrl,
+    isExternal: true,
   },
 ];
 
@@ -40,41 +51,92 @@ export function ContactDetailsSection({ t }: ContactDetailsSectionProps) {
   return (
     <Section className="pt-0">
       <Container>
-        <Card className="relative overflow-hidden p-8 sm:p-10 lg:p-14">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--color-primary-rgb),0.12),transparent_26rem)]" />
+        <Card className="relative overflow-hidden p-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--color-primary-rgb),0.12),transparent_28rem)]" />
 
-          <div className="relative grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-            <div>
+          <div className="relative grid lg:min-h-[46rem] lg:grid-cols-[0.82fr_1.18fr]">
+            <div className="p-8 sm:p-10 lg:p-14">
               <Badge>{t("contact.details.eyebrow")}</Badge>
 
               <h2 className="mt-5 max-w-xl text-3xl font-semibold tracking-[-0.04em] text-[var(--color-foreground)] sm:text-4xl">
                 {t("contact.details.title")}
               </h2>
+
+              <p className="mt-5 max-w-xl text-base leading-8 text-[var(--color-muted)]">
+                {t("contact.page.description")}
+              </p>
+
+              <div className="mt-10 grid gap-4">
+                {detailItems.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <a
+                      key={item.key}
+                      href={item.href}
+                      target={item.isExternal ? "_blank" : undefined}
+                      rel={item.isExternal ? "noreferrer noopener" : undefined}
+                      className="group flex items-center justify-between gap-5 rounded-3xl border border-[var(--color-border)] bg-[var(--color-background)]/45 p-5 transition hover:border-[var(--color-primary)]/70 hover:bg-[var(--color-background)]/65"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--color-background)]">
+                          <Icon className="size-5" />
+                        </div>
+
+                        <div>
+                          <p className="text-sm font-medium text-[var(--color-primary)]">
+                            {t(`contact.details.${item.key}`)}
+                          </p>
+
+                          <p className="mt-1 break-words text-sm leading-7 text-[var(--color-foreground)]">
+                            {item.value}
+                          </p>
+                        </div>
+                      </div>
+
+                      <ArrowUpRight className="size-5 shrink-0 text-[var(--color-muted)] transition group-hover:text-[var(--color-primary)]" />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {detailItems.map((item) => {
-                const Icon = item.icon;
+            <div className="border-t border-[var(--color-border)] p-4 sm:p-6 lg:border-l lg:border-t-0">
+              <div className="relative h-full min-h-[32rem] overflow-hidden rounded-[1.75rem] border border-[var(--color-border)] bg-[var(--color-background)] shadow-2xl shadow-black/20">
+                <iframe
+                  title={siteConfig.contact.address}
+                  src={siteConfig.contact.mapEmbedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 h-full w-full border-0 grayscale contrast-[1.05] saturate-[0.75] opacity-80"
+                />
 
-                return (
-                  <div
-                    key={item.key}
-                    className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-background)]/45 p-5"
-                  >
-                    <div className="mb-5 flex size-10 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--color-background)]">
-                      <Icon className="size-5" />
-                    </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/70 via-transparent to-[var(--color-background)]/15" />
 
-                    <p className="text-sm font-medium text-[var(--color-primary)]">
-                      {t(`contact.details.${item.key}`)}
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
+
+                <div className="absolute bottom-5 left-5 right-5 sm:left-auto sm:w-[24rem]">
+                  <div className="rounded-3xl border border-white/15 bg-black/60 p-5 text-white shadow-2xl shadow-black/30 backdrop-blur-xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/60">
+                      {t("contact.details.location")}
                     </p>
 
-                    <p className="mt-2 break-words text-sm leading-7 text-[var(--color-foreground)]">
-                      {item.value}
+                    <p className="mt-2 text-base font-semibold">
+                      {siteConfig.contact.address}
                     </p>
+
+                    <a
+                      href={siteConfig.contact.mapUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-primary)] px-5 py-3 text-sm font-semibold text-[var(--color-background)] transition hover:bg-[var(--color-primary-hover)]"
+                    >
+                      Abrir en Google Maps
+                      <ArrowUpRight className="size-4" />
+                    </a>
                   </div>
-                );
-              })}
+                </div>
+              </div>
             </div>
           </div>
         </Card>

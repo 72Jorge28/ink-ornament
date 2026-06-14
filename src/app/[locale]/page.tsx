@@ -5,10 +5,7 @@ import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { HeroSection } from "@/components/sections/home/HeroSection";
-import { HomeCtaSection } from "@/components/sections/home/HomeCtaSection";
 import { HomeGalleryPreviewSection } from "@/components/sections/home/HomeGalleryPreviewSection";
-import { ProcessSection } from "@/components/sections/home/ProcessSection";
-import { ServicesSection } from "@/components/sections/home/ServicesSection";
 import { StylesSection } from "@/components/sections/home/StylesSection";
 import { createT } from "@/i18n/create-t";
 import { getMessages } from "@/i18n/get-messages";
@@ -53,10 +50,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <main>
         <HeroSection locale={locale} t={t} />
         <HomeGalleryPreviewSection locale={locale} t={t} />
-        <ServicesSection locale={locale} t={t} />
         <StylesSection locale={locale} t={t} />
-        <ProcessSection t={t} />
-        <HomeCtaSection locale={locale} t={t} />
       </main>
 
       <Footer locale={locale} t={t} />

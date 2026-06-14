@@ -8,11 +8,16 @@ export const siteConfig = {
   locales: ["es", "en"] as const,
 
   contact: {
-    phone: "+1 000 000 0000",
+    phone: "+53 63816128",
     email: "booking@inkornament.com",
-    whatsapp: "https://wa.me/10000000000",
-    instagram: "https://instagram.com",
-    address: "Miami, Florida",
+    whatsapp: "https://wa.me/5363816128",
+    instagram:
+      "https://www.instagram.com/da.sant02_tattoo.ink?igsh=MWU1Y3BwN2hrNWhxNw==",
+    address: "Martí, Santiago de Cuba",
+    mapUrl:
+      "https://www.google.com/maps/search/?api=1&query=Mart%C3%AD%2C%20Santiago%20de%20Cuba",
+    mapEmbedUrl:
+      "https://www.google.com/maps?q=Mart%C3%AD%2C%20Santiago%20de%20Cuba&output=embed",
   },
 
   nav: [
@@ -20,10 +25,10 @@ export const siteConfig = {
       href: "/",
       labelKey: "nav.home",
     },
-    {
-      href: "/services",
-      labelKey: "nav.services",
-    },
+    // {
+    //   href: "/services",
+    //   labelKey: "nav.services",
+    // },
     {
       href: "/styles",
       labelKey: "nav.styles",
@@ -44,11 +49,22 @@ export const siteConfig = {
 
   pages: ["/", "/services", "/styles", "/gallery", "/about", "/contact"],
 
+  images: {
+    hero: {
+      background: "/images/hero/img-fondo.jpg",
+      featured: "/images/hero/img-persona.jpg",
+    },
+
+    about: {
+      story: "/images/about/img-persona.jpg",
+    },
+  },
+
   gallery: {
     items: [
       {
         index: 0,
-        src: "/images/gallery/img-tatto-costilla.jpeg",
+        src: "/images/gallery/img-tatto-brazo.jpg",
         className: "lg:row-span-2",
         visualClassName: "aspect-[4/5] lg:h-full lg:aspect-auto",
         sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
@@ -76,14 +92,14 @@ export const siteConfig = {
       },
       {
         index: 4,
-        src: "/images/gallery/img-tatto-mano.jpeg",
+        src: "/images/gallery/img-tatto-brazo2.jpg",
         className: "",
         visualClassName: "aspect-[4/3]",
         sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
       },
       {
         index: 5,
-        src: "/images/gallery/img-tatto-hombro2.jpeg",
+        src: "/images/hero/img-fondo.jpg",
         className: "lg:col-span-2",
         visualClassName: "aspect-[16/7]",
         sizes: "(min-width: 1024px) 66vw, (min-width: 640px) 50vw, 100vw",
@@ -93,7 +109,7 @@ export const siteConfig = {
     homePreview: [
       {
         index: 0,
-        src: "/images/gallery/img-tatto-costilla.jpeg",
+        src: "/images/gallery/img-tatto-brazo.jpg",
         className: "lg:min-h-[34rem]",
         visualClassName: "aspect-[4/5] lg:aspect-auto lg:h-full",
         sizes: "(min-width: 1024px) 60vw, 100vw",
@@ -101,7 +117,7 @@ export const siteConfig = {
       },
       {
         index: 1,
-        src: "/images/gallery/img-tatto-mano.jpeg",
+        src: "/images/gallery/img-tatto-brazo2.jpg",
         className: "",
         visualClassName: "aspect-[16/10]",
         sizes: "(min-width: 1024px) 40vw, 100vw",

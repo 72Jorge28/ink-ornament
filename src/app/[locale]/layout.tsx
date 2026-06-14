@@ -1,3 +1,4 @@
+// src/app/[locale]/layout.tsx
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
@@ -16,16 +17,18 @@ type LocaleLayoutProps = {
   }>;
 };
 
-const criticalThemeStyles: Record<string, CSSProperties & Record<string, string>> = {
+type CriticalThemeStyle = CSSProperties & Record<string, string>;
+
+const criticalThemeStyles: Record<string, CriticalThemeStyle> = {
   "royal-violet": {
-    "--color-background": "#0d0b14",
-    "--color-foreground": "#f2eaff",
-    "--color-surface": "#171123",
-    "--color-primary": "#a855f7",
-    "--color-primary-hover": "#c084fc",
-    "--color-primary-rgb": "168, 85, 247",
-    "--color-muted": "#b8abc9",
-    "--color-border": "#33243f",
+    "--color-background": "#0f0b18",
+    "--color-foreground": "#f3ecff",
+    "--color-surface": "#171021",
+    "--color-primary": "#8b5cf6",
+    "--color-primary-hover": "#a78bfa",
+    "--color-primary-rgb": "139, 92, 246",
+    "--color-muted": "#b7abc8",
+    "--color-border": "#2c213a",
     backgroundColor: "var(--color-background)",
     color: "var(--color-foreground)",
   },
@@ -38,6 +41,18 @@ const criticalThemeStyles: Record<string, CSSProperties & Record<string, string>
     "--color-primary-rgb": "201, 164, 92",
     "--color-muted": "#a99d8b",
     "--color-border": "#3a2f22",
+    backgroundColor: "var(--color-background)",
+    color: "var(--color-foreground)",
+  },
+  "emerald-light": {
+    "--color-background": "#f7fbf7",
+    "--color-foreground": "#102019",
+    "--color-surface": "#ffffff",
+    "--color-primary": "#15803d",
+    "--color-primary-hover": "#16a34a",
+    "--color-primary-rgb": "21, 128, 61",
+    "--color-muted": "#5c6f64",
+    "--color-border": "#d8e7dc",
     backgroundColor: "var(--color-background)",
     color: "var(--color-foreground)",
   },
@@ -112,14 +127,12 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const activeTheme = themeConfig.activePreset;
+  const activeTheme =
+    themeConfig.activePreset as keyof typeof criticalThemeStyles;
 
   return (
     <html lang={locale as Locale}>
-      <body
-        data-theme={activeTheme}
-        style={criticalThemeStyles[activeTheme]}
-      >
+      <body data-theme={activeTheme} style={criticalThemeStyles[activeTheme]}>
         <LocalBusinessJsonLd />
         {children}
       </body>

@@ -54,8 +54,8 @@ export function ContactDetailsSection({ t }: ContactDetailsSectionProps) {
         <Card className="relative overflow-hidden p-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(var(--color-primary-rgb),0.12),transparent_28rem)]" />
 
-          <div className="relative grid lg:min-h-[46rem] lg:grid-cols-[0.82fr_1.18fr]">
-            <div className="p-8 sm:p-10 lg:p-14">
+          <div className="relative grid min-w-0 lg:min-h-[46rem] lg:grid-cols-[0.82fr_1.18fr]">
+            <div className="min-w-0 p-8 sm:p-10 lg:p-14">
               <Badge>{t("contact.details.eyebrow")}</Badge>
 
               <h2 className="mt-5 max-w-xl text-3xl font-semibold tracking-[-0.04em] text-[var(--color-foreground)] sm:text-4xl">
@@ -76,19 +76,19 @@ export function ContactDetailsSection({ t }: ContactDetailsSectionProps) {
                       href={item.href}
                       target={item.isExternal ? "_blank" : undefined}
                       rel={item.isExternal ? "noreferrer noopener" : undefined}
-                      className="group flex items-center justify-between gap-5 rounded-3xl border border-[var(--color-border)] bg-[var(--color-background)]/45 p-5 transition hover:border-[var(--color-primary)]/70 hover:bg-[var(--color-background)]/65"
+                      className="group flex min-w-0 items-center justify-between gap-4 rounded-3xl border border-[var(--color-border)] bg-[var(--color-background)]/45 p-4 transition hover:border-[var(--color-primary)]/70 hover:bg-[var(--color-background)]/65 sm:gap-5 sm:p-5"
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex min-w-0 items-center gap-4">
                         <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-[var(--color-background)]">
                           <Icon className="size-5" />
                         </div>
 
-                        <div>
+                        <div className="min-w-0">
                           <p className="text-sm font-medium text-[var(--color-primary)]">
                             {t(`contact.details.${item.key}`)}
                           </p>
 
-                          <p className="mt-1 break-words text-sm leading-7 text-[var(--color-foreground)]">
+                          <p className="mt-1 break-words text-sm leading-7 text-[var(--color-foreground)] [overflow-wrap:anywhere]">
                             {item.value}
                           </p>
                         </div>
@@ -101,27 +101,27 @@ export function ContactDetailsSection({ t }: ContactDetailsSectionProps) {
               </div>
             </div>
 
-            <div className="border-t border-[var(--color-border)] p-4 sm:p-6 lg:border-l lg:border-t-0">
-              <div className="relative h-full min-h-[32rem] overflow-hidden rounded-[1.75rem] border border-[var(--color-border)] bg-[var(--color-background)] shadow-2xl shadow-black/20">
+            <div className="min-w-0 border-t border-[var(--color-border)] p-4 sm:p-6 lg:border-l lg:border-t-0">
+              <div className="relative h-full min-h-[32rem] w-full min-w-0 overflow-hidden rounded-[1.75rem] border border-[var(--color-border)] bg-[var(--color-background)] shadow-2xl shadow-black/20">
                 <iframe
                   title={siteConfig.contact.address}
                   src={siteConfig.contact.mapEmbedUrl}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 h-full w-full border-0 grayscale contrast-[1.05] saturate-[0.75] opacity-80"
+                  className="absolute inset-0 h-full w-full border-0 opacity-80 grayscale contrast-[1.05] saturate-[0.75]"
                 />
 
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-background)]/70 via-transparent to-[var(--color-background)]/15" />
 
                 <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
 
-                <div className="absolute bottom-5 left-5 right-5 sm:left-auto sm:w-[24rem]">
+                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-auto sm:right-5 sm:w-[24rem]">
                   <div className="rounded-3xl border border-white/15 bg-black/60 p-5 text-white shadow-2xl shadow-black/30 backdrop-blur-xl">
                     <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/60">
                       {t("contact.details.location")}
                     </p>
 
-                    <p className="mt-2 text-base font-semibold">
+                    <p className="mt-2 text-base font-semibold [overflow-wrap:anywhere]">
                       {siteConfig.contact.address}
                     </p>
 

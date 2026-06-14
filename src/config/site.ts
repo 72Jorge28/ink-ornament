@@ -14,8 +14,7 @@ export const siteConfig = {
     instagram:
       "https://www.instagram.com/da.sant02_tattoo.ink?igsh=MWU1Y3BwN2hrNWhxNw==",
     address: "Martí, Santiago de Cuba",
-    mapUrl:
-      "https://www.google.com/maps/search/?api=1&query=Mart%C3%AD%2C%20Santiago%20de%20Cuba",
+    mapUrl: "https://maps.app.goo.gl/Zcm9Uqjf8CZAbL6fA?g_st=aw",
     mapEmbedUrl:
       "https://www.google.com/maps?q=Mart%C3%AD%2C%20Santiago%20de%20Cuba&output=embed",
   },

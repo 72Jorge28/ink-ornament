@@ -13,10 +13,11 @@ export const siteConfig = {
     whatsapp: "https://wa.me/5363816128",
     instagram:
       "https://www.instagram.com/da.sant02_tattoo.ink?igsh=MWU1Y3BwN2hrNWhxNw==",
-    address: "Martí, Santiago de Cuba",
-    mapUrl: "https://maps.app.goo.gl/Zcm9Uqjf8CZAbL6fA?g_st=aw",
+    address: "Av. Rene Ramos Latour, Santiago de Cuba, Cuba",
+    mapUrl:
+      "https://www.google.com/maps/place/20%C2%B001'56.9%22N+75%C2%B049'33.9%22W/@20.032461,-75.826078,17z",
     mapEmbedUrl:
-      "https://www.google.com/maps?q=Mart%C3%AD%2C%20Santiago%20de%20Cuba&output=embed",
+      "https://www.google.com/maps?q=20.032461,-75.826078&z=17&output=embed",
   },
 
   nav: [
